@@ -1,5 +1,5 @@
 # PySCUBA
-Python for Single-cell Clustering Using Bifurcation Analysis
+Python for Single-cell Clustering Using Bifurcation Analysis.
 
 Here be dragons!
 ----------------
