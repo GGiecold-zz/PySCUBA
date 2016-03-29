@@ -13,7 +13,7 @@ The motivation for this project is twofold:
 - to make do without high Matlab licensing fees that were preventing some of our colleagues from using SCUBA and other tools developed at our lab;
 - to come up with faster, more efficient way of handling the computations and data processing; a benchmark comparison done on the same machine and on a few datasets found that where SCUBA took about 20 minutes to complete, PySCUBA handles the same task in about 30 seconds.
 
-I have found a few bugs, mathematical inconsistencies and improper or overlooked handling of outlier cases in the Matlab code that have been fully addressed in the present Python pacakge.
+I have found a few bugs, mathematical inconsistencies and improper or overlooked handling of outlier cases in the Matlab code. Such issues are fully addressed in the present Python package.
 
 Reference
 ---------
