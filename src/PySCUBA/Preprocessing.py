@@ -25,7 +25,7 @@ from rpy2.robjects import numpy2ri
 from rpy2.robjects.packages import importr
 from sklearn.manifold import TSNE
 
-import Tree_classes
+import .Tree_classes
 
 
 __all__ = ['Annotation', 'cytometry_preprocess', 'Cyto_data', 
