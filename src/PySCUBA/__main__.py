@@ -16,8 +16,8 @@ import sys
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
-from Gap_stats import gap_stats
-from Preprocessing import cytometry_preprocess, PCR_preprocess, RNASeq_preprocess
+from .Gap_stats import gap_stats
+from .Preprocessing import cytometry_preprocess, PCR_preprocess, RNASeq_preprocess
 import .SCUBA_core as SCUBA
 
 
