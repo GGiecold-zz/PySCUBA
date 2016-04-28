@@ -18,7 +18,7 @@ from sklearn.preprocessing import StandardScaler
 
 from Gap_stats import gap_stats
 from Preprocessing import cytometry_preprocess, PCR_preprocess, RNASeq_preprocess
-import SCUBA_core as SCUBA
+import .SCUBA_core as SCUBA
 
 
 def plot_tree(cluster_indices, parent_clusters, output_directory = None):
