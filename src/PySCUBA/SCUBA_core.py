@@ -28,7 +28,7 @@ from sklearn.metrics import pairwise_distances_argmin
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.preprocessing import StandardScaler
 
-from Gap_stats import gap_stats
+from .Gap_stats import gap_stats
 
 
 __all__ = ['bifurcation_analysis', 'bifurcation_direction', 'initialize_tree', 
