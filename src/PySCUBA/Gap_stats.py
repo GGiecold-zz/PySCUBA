@@ -1,4 +1,4 @@
-#/usr/env/bin python
+#!/usr/env/bin python
 
 
 # PySCUBA/src/PySCUBA/Gap_stats.py
