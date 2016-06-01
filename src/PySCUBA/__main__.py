@@ -49,8 +49,9 @@ def plot_tree(cluster_indices, parent_clusters, output_directory = None):
     layout = tree.layout('fr')
     name = path.join(output_directory, 'SCUBA_tree.pdf')
     igraph.plot(tree, name, bbox = (200 * N_vertices, 200 * N_vertices), margin = 250,
-                layout = layout, edge_width = [7] * (N_vertices - 1), vertex_label_dist = 0, 
-                vertex_label_size = 30, vertex_size = vertex_sizes.tolist())
+                layout = layout, edge_width = [7] * (N_vertices - 1), 
+                vertex_label_dist = 0, vertex_label_size = 30, 
+                vertex_size = vertex_sizes.tolist())
     
 
 def one_to_max(array_in):
@@ -105,7 +106,9 @@ def main():
 
     preprocessing_fcts = [cytometry_preprocess, PCR_preprocess, RNASeq_preprocess]
     data_type = {'cytometry': 0, 'PCR': 1, 'RNASeq': 2}
-    cell_IDs, data, markers, cell_stages, data_tag, output_directory = preprocessing_fcts[data_type[opts.data_type]](file_path, opts.log_mode, opts.pseudotime_mode, opts.pcv_method, opts.anchor_gene, opts.exclude_marker_names)
+    cell_IDs, data, markers, cell_stages, data_tag, output_directory = preprocessing_fcts[data_type[
+        opts.data_type]](file_path, opts.log_mode, opts.pseudotime_mode, 
+        opts.pcv_method, opts.anchor_gene, opts.exclude_marker_names)
     
     cell_stages = 1 + one_to_max(cell_stages)
     data = StandardScaler(with_std = False).fit_transform(data)
@@ -118,8 +121,8 @@ def main():
     
     centroid_coords, cluster_indices, parent_clusters = SCUBA.initialize_tree(data, cell_stages)
     centroid_coords, cluster_indices, parent_clusters = SCUBA.refine_tree(data, 
-                             centroid_coords, cluster_indices, parent_clusters, 
-                             cell_stages, output_directory)
+        centroid_coords, cluster_indices, parent_clusters, cell_stages, 
+        output_directory)
     
     try:
         import igraph
@@ -132,13 +135,13 @@ def main():
     else:
         weights = None
     
-    bifurcation_info, bifurcation_axes, bifurcation_projections = SCUBA.bifurcation_direction(data,
-                    cell_IDs, markers, parent_clusters, centroid_coords, output_directory, weights)
+    bifurcation_info, bifurcation_axes, bifurcation_projections = SCUBA.bifurcation_direction(
+        data, cell_IDs, markers, parent_clusters, centroid_coords, output_directory, weights)
                 
     if bifurcation_info:
-        data_per_split, parameters_per_split = SCUBA.bifurcation_analysis(cluster_indices, 
-                              bifurcation_info, bifurcation_axes, bifurcation_projections,
-                              output_directory)
+        data_per_split, parameters_per_split = SCUBA.bifurcation_analysis(
+            cluster_indices, bifurcation_info, bifurcation_axes, 
+            bifurcation_projections, output_directory)
         SCUBA.reduction_simulations(data_per_split, parameters_per_split)
     
 
