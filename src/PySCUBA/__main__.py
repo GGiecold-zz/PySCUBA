@@ -14,10 +14,12 @@ from os import getcwd, path
 import sys
 
 import numpy as np
+from PyQt4 import QtGui
 from sklearn.preprocessing import StandardScaler
 
 from .Gap_stats import gap_stats
 from .Preprocessing import cytometry_preprocess, PCR_preprocess, RNASeq_preprocess
+import .PySCUBApp_design as design
 import .SCUBA_core as SCUBA
 
 
@@ -89,6 +91,13 @@ def one_to_max(array_in):
 
     return result
        
+
+class PySCUBApp(QtGui, QMainWindow, design.Ui_MainWindow):
+    
+    def __init__(self, parent=None):
+        super(PySCUBApp, self).__init__(parent)
+        self.setupUi(self)
+       
               
 def main():
         
@@ -132,6 +141,14 @@ def main():
                               output_directory)
         SCUBA.reduction_simulations(data_per_split, parameters_per_split)
     
+
+#def main():
+#    
+#    app = QtGui.OApplication(sys.argv)
+#    form = PySCUBApp()
+#    form.show()
+#    app.exec_()
+
 
 if __name__ == '__main__':
 
