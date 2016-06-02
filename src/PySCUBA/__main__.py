@@ -150,7 +150,7 @@ def main():
 #    app = QtGui.OApplication(sys.argv)
 #    form = PySCUBApp()
 #    form.show()
-#    app.exec_()
+#    sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
