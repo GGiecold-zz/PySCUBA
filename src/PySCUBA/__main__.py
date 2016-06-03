@@ -14,7 +14,7 @@ from os import getcwd, path
 import sys
 
 import numpy as np
-from PyQt4 import QtGui
+from PyQt4 import QtCore, QtGui
 from sklearn.preprocessing import StandardScaler
 
 from .Gap_stats import gap_stats
@@ -107,6 +107,10 @@ class PySCUBApp(QtGui, QMainWindow, design.Ui_MainWindow):
             event.accept()
         else:
             event.ignore()
+            
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Escape:
+            self.close()
        
               
 def main():
