@@ -245,7 +245,7 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             self.cancel()
         else:
             self.cancelButton.setEnabled(False)
-            self.okButton.setEnabled(True)
+            self.okButton.setEnabled(False)
             self.statusbar.showMessage("PySCUBA has completed the "
                 "analysis of your data.")
             QtGui.QMessageBox.information(self, "Status Message", 
