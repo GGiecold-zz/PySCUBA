@@ -263,11 +263,11 @@ class Ui_MainWindow(object):
         self.dataTypeLabel.setText(_translate("MainWindow", 
             "2. Specify type of data:", None))
         self.dataTypeComboBox.setItemText(0, _translate("MainWindow",
-            "cytometry", None))
+            "RNASeq", None))
         self.dataTypeComboBox.setItemText(1, _translate("MainWindow", 
             "PCR", None))
         self.dataTypeComboBox.setItemText(2, _translate("MainWindow",
-            "RNASeq", None))
+            "cytometry", None))
         
         self.clusterModeLabel.setText(_translate("MainWindow", 
             "3. Choose cluster mode:", None))
