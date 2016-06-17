@@ -12,6 +12,11 @@
 from os import getcwd, path
 import sys
 
+try:
+    import igraph
+except ImportError, e:
+    pass
+
 import numpy as np
 from PyQt4 import QtCore, QtGui
 from sklearn.preprocessing import StandardScaler
