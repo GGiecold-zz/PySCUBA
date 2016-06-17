@@ -144,10 +144,7 @@ class WorkerThread(QtCore.QThread):
         parent_clusters = SCUBA.refine_tree(data, centroid_coords,
             cluster_indices, parent_clusters, cell_stages, output_directory)
     
-        try:
-            plot_tree(cluster_indices, parent_clusters, output_directory)
-        except ImportError, e:
-            pass
+        plot_tree(cluster_indices, parent_clusters, output_directory)
         
         if self.cluster_mode in {'pca', 'pca2'}:
             weights = PCA_components
