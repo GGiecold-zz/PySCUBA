@@ -272,11 +272,11 @@ class Ui_MainWindow(object):
         self.clusterModeLabel.setText(_translate("MainWindow", 
             "3. Choose cluster mode:", None))
         self.clusterModeComboBox.setItemText(0, _translate("MainWindow",
-            "PCA", None))
-        self.clusterModeComboBox.setItemText(1, _translate("MainWindow",
-            "PCA2", None))
-        self.clusterModeComboBox.setItemText(2, _translate("MainWindow",
             "None", None))
+        self.clusterModeComboBox.setItemText(1, _translate("MainWindow",
+            "PCA", None))
+        self.clusterModeComboBox.setItemText(2, _translate("MainWindow",
+            "PCA2", None))
         
         self.logCheckBox.setText(_translate("MainWindow", 
             "4. Apply a log-transform?", None))
