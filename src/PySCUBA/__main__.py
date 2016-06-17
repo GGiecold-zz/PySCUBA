@@ -155,7 +155,6 @@ def main():
         data_per_split, parameters_per_split = SCUBA.bifurcation_analysis(
             cluster_indices, bifurcation_info, bifurcation_axes, 
             bifurcation_projections, output_directory)
-        SCUBA.reduction_simulations(data_per_split, parameters_per_split)
     
 
 #def main():
