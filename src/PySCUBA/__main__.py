@@ -31,7 +31,8 @@ def plot_tree(cluster_indices, parent_clusters, output_directory = None):
     """Display a bifurcation tree.
     """
 
-    import igraph
+    if igraph not in sys.modules:
+        return
 
     if output_directory is None:
         output_directory = getcwd()
