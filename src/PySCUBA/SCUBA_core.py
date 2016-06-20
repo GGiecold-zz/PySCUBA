@@ -15,7 +15,7 @@ from math import ceil, exp, floor, sqrt
 import operator
 from os import getcwd, path
 import sys
-from warnings import formatwarning, warn
+import warnings
 
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
@@ -97,7 +97,7 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False):
        k-means clustering.
     """
 
-    formatwarning = custom_formatwarning
+    warnings.formatwarning = custom_formatwarning
 
     min_split = 15                 # Lower threshold on the number of cells in a cluster 
                                    # for this cluster to be split.
@@ -245,7 +245,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
        111 (52)]
     """
 
-    formatwarning = custom_formatwarning
+    warnings.formatwarning = custom_formatwarning
 
     if output_directory is None:
         output_directory = getcwd()
@@ -395,7 +395,7 @@ def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coo
        the bifurcation directions.
     """
 
-    formatwarning = custom_formatwarning
+    warnings.formatwarning = custom_formatwarning
 
     if output_directory is None:
         output_directory = getcwd()
@@ -481,7 +481,7 @@ def bifurcation_analysis(cluster_indices, bifurcation_info, bifurcation_directio
            Option to compute the log-likelihood with the average number of cells per cell stage
     """   
     
-    formatwarning = custom_formatwarning
+    warnings.formatwarning = custom_formatwarning
     
     assert bifurcation_directions is not None
     
