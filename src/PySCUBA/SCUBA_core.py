@@ -15,7 +15,7 @@ from math import ceil, exp, floor, sqrt
 import operator
 from os import getcwd, path
 import sys
-from warnings import warn
+from warnings import formatwarning, warn
 
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
@@ -83,6 +83,13 @@ def PCA_analysis(data, mode, cell_stages = None):
         projected_data = np.dot(data, components.T)
     
     return components, projected_data
+    
+    
+def custom_formatwarning(msg, *a):
+    """Display a custom message and ignore every other warning.
+    """
+    
+    return str(msg) + '\n'
     
     
 def initialize_tree(data, cell_stages, rigorous_gap_stats = False):
