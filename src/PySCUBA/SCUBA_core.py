@@ -416,7 +416,7 @@ def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coo
                                                         tmp2))
                 else:
                     bifurcation_directions = np.hstack((bifurcation_directions, 
-                                                        np.dot(weights, tmp2)))
+                                                        np.dot(weights.T, tmp2)))
                     
     header = ['Stage']
     for k, v in bifurcation_info.items():
