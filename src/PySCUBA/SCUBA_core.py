@@ -186,8 +186,9 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False):
             idx = np.where(nearest_previous_cluster_indices == j)[0]
             
             if idx.size == 0:
-                warn("Empty cluster mapping encountered at " 
-                     "(pseudo-)time {0}".format(stage_idx + 1))
+                msg = ' '.join(["Empty cluster mapping encountered", 
+                                "at (pseudo-)time {0}.\n".format(stage_idx + 1)])
+                warnings.warn(msg)
                 continue
                 
             XX = X[idx]
@@ -303,7 +304,9 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
                 
                 empty_clusters = np.where(np.bincount(cluster_idx) == 0)[0]
                 if empty_clusters.size > 0:
-                    warn("WARNING: SCUBA: refine_tree: empty cluster identified at (pseudo-)time level {0}".format(stage_idx + 1))
+                    msg = ' '.join(["WARNING: SCUBA: refine_tree: empty cluster",
+                        "identified at (pseudo-)time level {0}.\n".format(stage_idx + 1)])
+                    warnings.warn(msg)
                     
                     used_samples = set()
                     for cluster in empty_clusters:
@@ -341,7 +344,10 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
                 if min(tmp) > 0 and max(tmp) < 3:
                     parent_clusters[stage_idx] = list(reshuffled_parent_clusters + beg_previous)
                 else:
-                    warn("WARNING: SCUBA: refine_tree: Binary tree assumption violated at stage {0}. Using the unaltered configuration instead".format(stage_idx))
+                    msg = ' '.join(["WARNING: SCUBA: refine_tree: Binary tree",
+                        "assumption violated at stage {0}.".format(stage_idx), 
+                        "Using the unaltered configuration instead.\n"])
+                    warnings.warn(msg)
                 
         # Check if convergence has been reached yet:
         delta_centroids = np.sum(np.fabs(centroid_coordinates - outdated_centroid_coordinates))
@@ -436,7 +442,7 @@ def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coo
         header.extend([str(k)] * len(v))
     
     if len(header) == 1:
-        warn('No bifurcation found!')
+        warnings.warn('No bifurcation found!\n')
         return (None, None, None)
     
     bifurcation_data_path = path.join(output_directory, 'bifurcation_direction.tsv')
@@ -543,9 +549,11 @@ def bifurcation_analysis(cluster_indices, bifurcation_info, bifurcation_directio
                 data_per_split[counter] = data
                 parameters_per_split[counter] = parameters
             else: 
-                warn("Not enough cells to fit the bifurcation potential of the {0} bifurcation "
-                     "at stage {1}. At least {2} cells are required.".format(ordinals[counter],
-                     stage, min_cells_per_bifurcation))
+                msg = ' '.join(["Not enough cells to fit the bifurcation potential", 
+                    "of the {0} bifurcation at stage {1}.".format(ordinals[counter],
+                    stage), "At least {0} cells are required.\n".format(
+                    min_cells_per_bifurcation)])
+                warnings.warn(msg)
             
             counter += 1
             
