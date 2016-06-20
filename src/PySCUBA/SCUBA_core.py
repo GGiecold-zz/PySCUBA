@@ -97,6 +97,8 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False):
        k-means clustering.
     """
 
+    formatwarning = custom_formatwarning
+
     min_split = 15                 # Lower threshold on the number of cells in a cluster 
                                    # for this cluster to be split.
     min_percentage_split = 0.25     # Minimum fraction of cells in the smaller cluster
@@ -242,6 +244,8 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
        Expression Data Reveals Epigenetic Landscape.' In: Proc. Natl. Acad. Sci. USA, 2014 Dec. 30,
        111 (52)]
     """
+
+    formatwarning = custom_formatwarning
 
     if output_directory is None:
         output_directory = getcwd()
@@ -391,6 +395,8 @@ def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coo
        the bifurcation directions.
     """
 
+    formatwarning = custom_formatwarning
+
     if output_directory is None:
         output_directory = getcwd()
         
@@ -474,6 +480,8 @@ def bifurcation_analysis(cluster_indices, bifurcation_info, bifurcation_directio
        normalize_likelihood_level_cell_counts : bool, optional (default = True)
            Option to compute the log-likelihood with the average number of cells per cell stage
     """   
+    
+    formatwarning = custom_formatwarning
     
     assert bifurcation_directions is not None
     
