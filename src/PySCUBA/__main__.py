@@ -189,6 +189,9 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
     def __init__(self, parent=None):
         super(self.__class__, self).__init__(parent)
         self.setupUi(self)
+        
+        self.cancelButton.setEnabled(False)
+        self.okButton.setEnabled(False)
 
         self.data_path = './'
         self.selectDatasetButton.clicked.connect(self.selectDataset)
@@ -230,6 +233,8 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         self.data_path = str(dataFileDialog.getOpenFileName())
         self.statusbar.showMessage("{0} ready to be "
             "analyzed".format(path.basename(self.data_path)))
+        self.cancelButton.setEnabled(True)
+        self.okButton.setEnabled(True)
     
     def logStateChanged(self, int):
         if self.logCheckBox.isChecked():
