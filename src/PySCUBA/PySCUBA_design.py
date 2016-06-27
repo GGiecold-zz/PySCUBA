@@ -137,6 +137,9 @@ class Ui_MainWindow(object):
             "University & DFCI\nContact: g.giecold@gmail.com; "
             "ggiecold@jimmy.harvard.edu")
             
+    def showDocumentation(self, MainWindow):
+        pass
+            
     def adornGridLayout(self, MainWindow):
         self.datasetHorizontalLayout = QtGui.QHBoxLayout()
         self.datasetHorizontalLayout.setObjectName(
