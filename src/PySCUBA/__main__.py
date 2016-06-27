@@ -273,7 +273,7 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             self.statusbar.showMessage("PySCUBA has completed the "
                 "analysis of your data.")
             QtGui.QMessageBox.information(self, "Status Message", 
-                "Mission completed!")
+                "Mission accomplished!")
             
     def cancelRunning(self):
         self.cancelButton.setEnabled(False)
