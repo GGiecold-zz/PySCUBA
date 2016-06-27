@@ -171,6 +171,19 @@ class WorkerThread(QtCore.QThread):
         return
 
 
+class LoadImageThread(QtCore.QThread):
+
+    def __init__(self, source_file):
+        super(LoadImageThread, self).__init__()
+        self.source_file = source_file
+        
+    def __del__(self):
+        self.wait()
+        
+    def run(self):
+        self.emit(QtCore.SIGNAL("showImage(QString)"), self.source_file)
+
+
 class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
 
     def __init__(self, parent=None):
