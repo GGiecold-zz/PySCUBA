@@ -278,7 +278,7 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
     def cancelRunning(self):
         self.cancelButton.setEnabled(False)
         self.okButton.setEnabled(False)
-        self.get_thread.terminate()
+        self.worker_thread.terminate()
         self.statusbar.showMessage("PySCUBA was interrupted!")
         QtGui.QMessageBox.information(self, "Status Message", 
             "PySCUBA was interrupted!")
