@@ -9,7 +9,7 @@
 # Contact: g.giecold@gmail.com; ggiecold@jimmy.harvard.edu
 
 
-from os import getcwd, path
+from os import getcwd, path, remove
 import sys
 
 try:
@@ -18,8 +18,11 @@ except ImportError, e:
     pass
 
 import numpy as np
+from PIL import Image, ImageQt
 from PyQt4 import QtCore, QtGui
+import Queue
 from sklearn.preprocessing import StandardScaler
+import wand.image
 
 from .Gap_stats import gap_stats
 from .Preprocessing import cytometry_preprocess, PCR_preprocess, RNASeq_preprocess
