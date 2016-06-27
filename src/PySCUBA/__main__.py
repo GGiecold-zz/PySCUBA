@@ -204,10 +204,12 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         self.anchor_gene = None 
         self.exclude_marker_names = None
         
+        self.result_queue = Queue.Queue()
         self.okButton.clicked.connect(self.buttonClicked)
         self.okButton.clicked.connect(self.OK)
         self.cancelButton.clicked.connect(self.buttonClicked)
         
+        self.displayFileButton.setEnabled(False)
         self.displayFileButton.clicked.connect(self.selectDisplay)
 
     def closeEvent(self, event):
