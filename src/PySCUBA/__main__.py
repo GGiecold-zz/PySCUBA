@@ -226,8 +226,8 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             self.close()
 
     def selectDataset(self):
-        self.dataFileDialog = QtGui.QFileDialog(self)
-        self.data_path = str(self.dataFileDialog.getOpenFileName())
+        dataFileDialog = QtGui.QFileDialog(self)
+        self.data_path = str(dataFileDialog.getOpenFileName())
         self.statusbar.showMessage("{0} ready to be "
             "analyzed".format(path.basename(self.data_path)))
     
@@ -251,14 +251,14 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
     def OK(self):
         self.statusbar.showMessage('Work in progress...')
         
-        self.get_thread = WorkerThread(self.dataTypeComboBox.currentText(),
+        worker_thread = WorkerThread(self.dataTypeComboBox.currentText(),
             self.data_path, self.clusterModeComboBox.currentText(),
             self.log_mode, self.pseudotime_mode, self.pcv_method,
             self.anchor_gene, self.exclude_marker_names)
-        self.connect(self.get_thread, QtCore.SIGNAL("update(QString)"),
-            self.get_thread.run)
-        self.connect(self.get_thread, QtCore.SIGNAL("finished()"), self.doneRunning)
-        self.get_thread.start()
+        self.connect(worker_thread, QtCore.SIGNAL("update(QString)"),
+            worker_thread.run)
+        self.connect(worker_thread, QtCore.SIGNAL("finished()"), self.doneRunning)
+        worker_thread.start()
         self.cancelButton.setEnabled(True)
         self.okButton.setEnabled(False)
     
@@ -290,10 +290,10 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         source_file = QtGui.QFileDialog.getOpenFileName(self, 
             'Select file to display', self.directory, filters, select_filters)
         
-        self.load_image_thread = LoadImageThread(source_file)
-        self.connect(self.load_image_thread, QtCore.SIGNAL("showImage(QString)"),
+        load_image_thread = LoadImageThread(source_file)
+        self.connect(load_image_thread, QtCore.SIGNAL("showImage(QString)"),
             self.showImage)
-        self.load_image_thread.start()
+        load_image_thread.start()
         
     def showImage(self, source_file):
         source_file = str(source_file)
