@@ -105,11 +105,12 @@ def one_to_max(array_in):
 
 class WorkerThread(QtCore.QThread):
 
-    def __init__(self, data_type, data_path, cluster_mode, log_mode,
+    def __init__(self, result_queue, data_type, data_path, cluster_mode, log_mode,
                  pseudotime_mode, pcv_method, anchor_gene,
                  exclude_marker_names):
         super(WorkerThread, self).__init__()
         
+        self.result_queue = result_queue
         self.data_type = str(data_type)
         self.data_path = data_path
         
@@ -163,6 +164,9 @@ class WorkerThread(QtCore.QThread):
             data_per_split, parameters_per_split = SCUBA.bifurcation_analysis(
                 cluster_indices, bifurcation_info, bifurcation_axes,
                 bifurcation_projections, output_directory)
+                
+        self.result_queue.put(output_directory)
+        self.result_queue.task_done()
         
         return
 
