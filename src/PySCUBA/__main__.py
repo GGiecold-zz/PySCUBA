@@ -266,8 +266,8 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         if self.button_clicked == 'Cancel':
             self.cancelRunning()
         else:
-            self.cancelButton.setEnabled(True)
-            self.okButton.setEnabled(True)
+            self.cancelButton.setEnabled(False)
+            self.okButton.setEnabled(False)
             self.displayFileButton.setEnabled(True)
             self.directory = self.result_queue.get()
             self.statusbar.showMessage("PySCUBA has completed the "
