@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-# Author: Gregory Giecold
+# Author: Gregory Giecold for the GC Yuan Lab
 # Affiliation: Harvard University
 # Contact: g.giecold@gmail.com; ggiecold@jimmy.harvard.edu
 
