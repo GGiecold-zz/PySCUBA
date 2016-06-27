@@ -266,8 +266,10 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         if self.button_clicked == 'Cancel':
             self.cancelRunning()
         else:
-            self.cancelButton.setEnabled(False)
-            self.okButton.setEnabled(False)
+            self.cancelButton.setEnabled(True)
+            self.okButton.setEnabled(True)
+            self.displayFileButton.setEnabled(True)
+            self.directory = self.result_queue.get()
             self.statusbar.showMessage("PySCUBA has completed the "
                 "analysis of your data.")
             QtGui.QMessageBox.information(self, "Status Message", 
@@ -282,7 +284,39 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             "PySCUBA was interrupted!")
     
     def selectDisplay(self):
-        pass
+        filters = 'Images (*.jpg *.pdf *.png)'
+        #filters = 'Text files (*.csv *.tsv *.txt);;Images (*.jpg *.pdf *.png)'
+        select_filters = 'Images (*.jpg *.pdf *.png)'
+        source_file = QtGui.QFileDialog.getOpenFileName(self, 
+            'Select file to display', self.directory, filters, select_filters)
+        
+        self.load_image_thread = LoadImageThread(source_file)
+        self.connect(self.load_image_thread, QtCore.SIGNAL("showImage(QString)"),
+            self.showImage)
+        self.load_image_thread.start()
+        
+    def showImage(self, source_file):
+        source_file = str(source_file)
+        target_file = source_file.split('.')[0] + '.jpg'
+    
+        with wand.image.Image(filename=source_file) as img:
+            img.format = 'jpeg'
+            img.save(filename=target_file)
+            
+        img = Image.open(target_file, 'r')
+        width, height = img.size
+    
+        self.scene.clear()
+        
+        self.imgQ = ImageQt.ImageQt(img)
+        pixMap = QtGui.QPixmap.fromImage(self.imgQ)
+        self.scene.addPixmap(pixMap)
+        self.graphicsView.fitInView(QtCore.QRectF(0, 0, width, height),
+            QtCore.Qt.KeepAspectRatio)
+            
+        self.scene.update()
+        
+        remove(target_file)
 
 
 def main():
