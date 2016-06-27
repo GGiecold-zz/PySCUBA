@@ -228,7 +228,8 @@ class Ui_MainWindow(object):
         self.cancelOkLayout.addStretch(1)
         
     def adornGraphicsVerticalLayout(self, MainWindow):
-        self.graphicsView = QtGui.QGraphicsView(self.centralwidget)
+        self.scene = QtGui.QGraphicsScene(self.centralwidget)
+        self.graphicsView = QtGui.QGraphicsView(self.scene)
         self.graphicsView.setFrameShadow(QtGui.QFrame.Raised)
         self.graphicsView.setLineWidth(3)
         self.graphicsView.setVerticalScrollBarPolicy(
