@@ -235,14 +235,14 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             self.anchor_gene, self.exclude_marker_names)
         self.connect(self.get_thread, QtCore.SIGNAL("update(QString)"),
             self.get_thread.run)
-        self.connect(self.get_thread, QtCore.SIGNAL("finished()"), self.done)
+        self.connect(self.get_thread, QtCore.SIGNAL("finished()"), self.doneRunning)
         self.get_thread.start()
         self.cancelButton.setEnabled(True)
         self.okButton.setEnabled(False)
     
-    def done(self):
+    def doneRunning(self):
         if self.button_clicked == 'Cancel':
-            self.cancel()
+            self.cancelRunning()
         else:
             self.cancelButton.setEnabled(False)
             self.okButton.setEnabled(False)
@@ -251,7 +251,7 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             QtGui.QMessageBox.information(self, "Status Message", 
                 "Mission completed!")
             
-    def cancel(self):
+    def cancelRunning(self):
         self.cancelButton.setEnabled(False)
         self.okButton.setEnabled(False)
         self.get_thread.terminate()
