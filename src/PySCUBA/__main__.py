@@ -212,6 +212,7 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         self.cancelButton.clicked.connect(self.buttonClicked)
         
         self.zoom = 0
+        self.pixMap = QtGui.QPixmap()
         self.displayFileButton.setEnabled(False)
         self.displayFileButton.clicked.connect(self.selectDisplay)
 
@@ -316,6 +317,9 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
                 self.fitInView()
             else:
                 self.graphicsView.scale(factor, factor)
+        else:
+            pass
+                
     def fitInView(self):
         rect = QtCore.QRectF(self.pixMap.rect())
         if not rect.isNull():
