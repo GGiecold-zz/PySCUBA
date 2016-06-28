@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
+# PySCUBA/src/PySCUBA/PySCUBA_design.py
+
+
 # Author: Gregory Giecold for the GC Yuan Lab
 # Affiliation: Harvard University
 # Contact: g.giecold@gmail.com; ggiecold@jimmy.harvard.edu
