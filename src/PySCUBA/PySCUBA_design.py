@@ -134,11 +134,14 @@ class Ui_MainWindow(object):
     def showCredits(self, MainWindow):
         QtGui.QMessageBox.information(self, "Credits", 
             "Author: Gregory Giecold\nAffiliation: Harvard "
-            "University & DFCI\nContact: g.giecold@gmail.com; "
-            "ggiecold@jimmy.harvard.edu")
+            "University & DFCI\nContact: ggiecold@jimmy.harvard.edu\n"
+            "GitHub: https://github.com/GGiecold\n")
             
     def showDocumentation(self, MainWindow):
-        pass
+        url = QtCore.QUrl("https://github.com/GGiecold/PySCUBA")
+        if not QtGui.QDesktopServices.openUrl(url):
+            QtGui.QMessageBox.warning(self, 'Help & Documentation', 
+                'Could not open url to online documentation!')
             
     def adornGridLayout(self, MainWindow):
         self.datasetHorizontalLayout = QtGui.QHBoxLayout()
