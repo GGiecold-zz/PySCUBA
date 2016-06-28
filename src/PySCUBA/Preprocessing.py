@@ -25,7 +25,7 @@ from rpy2.robjects import numpy2ri
 from rpy2.robjects.packages import importr
 from sklearn.manifold import TSNE
 
-from .Tree_classes import Tree
+from . import Tree_classes
 
 
 __all__ = ['Annotation', 'cytometry_preprocess', 'Cyto_data', 
@@ -216,7 +216,7 @@ class Cyto_data(object):
         
         self.name = name
         self.data_points = data_points
-        self.tree = Tree(data_points, channels)
+        self.tree = Tree_classes.Tree(data_points, channels)
         self.scatters = scatters
         
         self.markers = []
