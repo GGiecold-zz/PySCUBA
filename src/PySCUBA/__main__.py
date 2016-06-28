@@ -128,7 +128,7 @@ class WorkerThread(QtCore.QThread):
         
     def run(self):
         preprocessing_fcts = [cytometry_preprocess, PCR_preprocess,
-                          RNASeq_preprocess]
+                              RNASeq_preprocess]
         data_type_dict = {'cytometry': 0, 'PCR': 1, 'RNASeq': 2}
         cell_IDs, data, markers, cell_stages, data_tag, \
         output_directory = preprocessing_fcts[data_type_dict[self.data_type]](
