@@ -10,6 +10,7 @@
 
 
 from os import getcwd, path, remove
+import Queue
 import sys
 
 try:
@@ -20,7 +21,6 @@ except ImportError, e:
 import numpy as np
 from PIL import Image, ImageQt
 from PyQt4 import QtCore, QtGui
-import Queue
 from sklearn.preprocessing import StandardScaler
 import wand.image
 
