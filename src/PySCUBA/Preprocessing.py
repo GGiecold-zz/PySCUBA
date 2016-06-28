@@ -11,7 +11,6 @@
 
 from __future__ import division
 
-from numbers import Number
 from operator import and_
 from os import getcwd, makedirs, path
 import re
