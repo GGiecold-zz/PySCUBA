@@ -26,8 +26,7 @@ import wand.image
 
 from .Gap_stats import gap_stats
 from .Preprocessing import cytometry_preprocess, PCR_preprocess, RNASeq_preprocess
-import .PySCUBA_design
-import .SCUBA_core as SCUBA
+from . import PySCUBA_design, SCUBA_core
 
 
 def plot_tree(cluster_indices, parent_clusters, output_directory = None):
@@ -139,13 +138,13 @@ class WorkerThread(QtCore.QThread):
         data = StandardScaler(with_std = False).fit_transform(data)
     
         if self.cluster_mode in {'pca', 'pca2'}:    
-            PCA_components, data = SCUBA.PCA_analysis(data, self.cluster_mode,
+            PCA_components, data = SCUBA_core.PCA_analysis(data, self.cluster_mode,
                 cell_stages if (self.cluster_mode == 'pca2') else None)
     
         centroid_coords, cluster_indices, \
-        parent_clusters = SCUBA.initialize_tree(data, cell_stages)
+        parent_clusters = SCUBA_core.initialize_tree(data, cell_stages)
         centroid_coords, cluster_indices, \
-        parent_clusters = SCUBA.refine_tree(data, centroid_coords,
+        parent_clusters = SCUBA_core.refine_tree(data, centroid_coords,
             cluster_indices, parent_clusters, cell_stages, output_directory)
     
         plot_tree(cluster_indices, parent_clusters, output_directory)
@@ -156,12 +155,12 @@ class WorkerThread(QtCore.QThread):
             weights = None
     
         bifurcation_info, bifurcation_axes, \
-        bifurcation_projections = SCUBA.bifurcation_direction(data, cell_IDs,
+        bifurcation_projections = SCUBA_core.bifurcation_direction(data, cell_IDs,
             markers, parent_clusters, centroid_coords, output_directory,
             weights)
                 
         if bifurcation_info:
-            data_per_split, parameters_per_split = SCUBA.bifurcation_analysis(
+            data_per_split, parameters_per_split = SCUBA_core.bifurcation_analysis(
                 cluster_indices, bifurcation_info, bifurcation_axes,
                 bifurcation_projections, output_directory)
                 
