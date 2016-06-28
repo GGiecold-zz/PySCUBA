@@ -240,6 +240,7 @@ class Ui_MainWindow(object):
         
     def adornGraphicsVerticalLayout(self, MainWindow):
         self.scene = QtGui.QGraphicsScene(self.centralwidget)
+
         self.graphicsView = QtGui.QGraphicsView(self.scene)
         self.graphicsView.setFrameShadow(QtGui.QFrame.Raised)
         self.graphicsView.setLineWidth(3)
@@ -247,6 +248,13 @@ class Ui_MainWindow(object):
             QtCore.Qt.ScrollBarAlwaysOn)
         self.graphicsView.setHorizontalScrollBarPolicy(
             QtCore.Qt.ScrollBarAlwaysOn)
+        self.graphicsView.setTransformationAnchor(
+            QtGui.QGraphicsView.AnchorUnderMouse)
+        self.graphicsView.setResizeAnchor(
+            QtGui.QGraphicsView.AnchorUnderMouse)
+        self.graphicsView.setBackgroundBrush(
+            QtGui.QBrush(QtGui.QColor(245,245,245)))
+        self.graphicsView.setFrameShape(QtGui.QFrame.NoFrame)
         self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
         self.graphicsVerticalLayout.addWidget(self.graphicsView)
         
