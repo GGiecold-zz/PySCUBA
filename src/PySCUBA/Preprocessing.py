@@ -67,9 +67,9 @@ def infer_pseudotime(data, output_directory, tag = '', pcv_method = 'Rprincurve'
             np.savetxt(f, pseudotime_series, fmt = '%.6f', delimiter = '\t')
          
     else:
-        print("ERROR: SCUBA: Preprocessing: infer_pseudotime:\n"
+        print("ERROR: PySCUBA: Preprocessing: infer_pseudotime:\n"
               "your choice of method for principal curve analysis is not supported "
-              "by the present version of SCUBA.")
+              "by the present version of PySCUBA.")
         exit(1)
         
     if anchor_gene:
