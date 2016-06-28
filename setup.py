@@ -14,8 +14,6 @@ from os import path
 
 from setuptools import setup, find_packages()
 
-from .__version__ import __version__
-
 
 exec(open('PySCUBA/__version__.py').read())
 
