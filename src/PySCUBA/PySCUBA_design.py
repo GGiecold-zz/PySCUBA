@@ -248,7 +248,7 @@ class Ui_MainWindow(object):
         self.graphicsView.setFrameShadow(QtGui.QFrame.Raised)
         self.graphicsView.setLineWidth(3)
         self.graphicsView.setVerticalScrollBarPolicy(
-            QtCore.Qt.ScrollBarAlwaysOff)
+            QtCore.Qt.ScrollBarAlwaysOn)
         self.graphicsView.setHorizontalScrollBarPolicy(
             QtCore.Qt.ScrollBarAlwaysOn)
         self.graphicsView.setTransformationAnchor(
