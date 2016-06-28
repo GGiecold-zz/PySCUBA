@@ -314,9 +314,22 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
             if self.zoom < 0:
                 self.zoom = 0
             elif self.zoom == 0:
-                self.graphicsView.fitInView()
+                self.fitInView()
             else:
                 self.graphicsView.scale(factor, factor)
+    def fitInView(self):
+        rect = QtCore.QRectF(self.pixMap.rect())
+        if not rect.isNull():
+            unity = self.graphicsView.transform().mapRect(
+                QtCore.QRectF(0, 0, 1, 1))
+            self.graphicsView.scale(1.0 / unity.width(), 1.0 / unity.height())
+            view_rect = self.graphicsView.viewport().rect()
+            scene_rect = self.graphicsView.transform().mapRect(rect)
+            factor = min(view_rect.width() / scene_rect.width(), 
+                view_rect.height() / scene_rect.height())
+            self.graphicsView.scale(factor, factor)
+            self.graphicsView.centerOn(rect.center())
+            self.zoom = 0
         
     def showImage(self, source_file):
         source_file = str(source_file)
@@ -330,14 +343,20 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         width, height = img.size
     
         self.scene.clear()
+        self.zoom = 0
         
         self.imgQ = ImageQt.ImageQt(img)
         self.pixMap = QtGui.QPixmap.fromImage(self.imgQ)
         if self.pixMap and not self.pixMap.isNull():
+            self.graphicsView.setDragMode(
+                QtGui.QGraphicsView.ScrollHandDrag)
             self.scene.addPixmap(self.pixMap)
-            self.graphicsView.fitInView(QtCore.QRectF(0, 0, width, height),
-                QtCore.Qt.KeepAspectRatio)
-            self.scene.update()
+            self.fitInView()
+        else:
+            self.graphicsView.setDragMode(QtGui.QGraphicsView.NoDrag)
+            self.scene.addPixmap(QtGui.QPixmap())
+                
+        self.scene.update()
         
         remove(target_file)
 
