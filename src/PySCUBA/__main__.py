@@ -212,6 +212,7 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         self.okButton.clicked.connect(self.OK)
         self.cancelButton.clicked.connect(self.buttonClicked)
         
+        self.zoom = 0
         self.displayFileButton.setEnabled(False)
         self.displayFileButton.clicked.connect(self.selectDisplay)
 
@@ -290,7 +291,6 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
     
     def selectDisplay(self):
         filters = 'Images (*.jpg *.pdf *.png)'
-        #filters = 'Text files (*.csv *.tsv *.txt);;Images (*.jpg *.pdf *.png)'
         select_filters = 'Images (*.jpg *.pdf *.png)'
         source_file = QtGui.QFileDialog.getOpenFileName(self, 
             'Select file to display', self.directory, filters, select_filters)
@@ -299,6 +299,24 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         self.connect(self.load_image_thread, QtCore.SIGNAL("showImage(QString)"),
             self.showImage)
         self.load_image_thread.start()
+        
+    def zoomFactor(self):
+        return self.zoom
+        
+    def wheelEvent(self, event):
+        if not self.pixMap.isNull():
+            if event.delta() < 0:
+                factor = 0.8
+                self.zoom -= 1
+            else:
+                factor = 1.25
+                self.zoom += 1
+            if self.zoom < 0:
+                self.zoom = 0
+            elif self.zoom == 0:
+                self.graphicsView.fitInView()
+            else:
+                self.graphicsView.scale(factor, factor)
         
     def showImage(self, source_file):
         source_file = str(source_file)
@@ -314,12 +332,12 @@ class PySCUBApp(QtGui.QMainWindow, PySCUBA_design.Ui_MainWindow):
         self.scene.clear()
         
         self.imgQ = ImageQt.ImageQt(img)
-        pixMap = QtGui.QPixmap.fromImage(self.imgQ)
-        self.scene.addPixmap(pixMap)
-        self.graphicsView.fitInView(QtCore.QRectF(0, 0, width, height),
-            QtCore.Qt.KeepAspectRatio)
-            
-        self.scene.update()
+        self.pixMap = QtGui.QPixmap.fromImage(self.imgQ)
+        if self.pixMap and not self.pixMap.isNull():
+            self.scene.addPixmap(self.pixMap)
+            self.graphicsView.fitInView(QtCore.QRectF(0, 0, width, height),
+                QtCore.Qt.KeepAspectRatio)
+            self.scene.update()
         
         remove(target_file)
 
