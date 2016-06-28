@@ -14,6 +14,11 @@ from os import path
 
 from setuptools import setup, find_packages()
 
+from .__version__ import __version__
+
+
+exec(open('PySCUBA/__version__.py').read())
+
 
 here = path.abspath(path.dirname(__file__))
 
@@ -22,7 +27,7 @@ with open(path.join(here, 'README'), encoding = 'utf-8') as f:
     
 
 setup(name = 'PySCUBA',
-      version = '0.1.0',
+      version = __version__,
       
       description = "Python for Single-cell Clustering Using Bifurcation Analysis",
       long_description = long_description,
