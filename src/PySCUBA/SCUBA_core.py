@@ -32,7 +32,7 @@ from .Gap_stats import gap_stats
 
 
 __all__ = ['bifurcation_analysis', 'bifurcation_direction', 'initialize_tree', 
-           'PCA_analysis', 'reduction_simulations', 'refine_tree']
+           'PCA_analysis', 'refine_tree']
 
 
 SCALING_FACTOR = float(10)
