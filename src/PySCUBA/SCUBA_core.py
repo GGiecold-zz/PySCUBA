@@ -302,7 +302,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
                 
                 empty_clusters = np.where(np.bincount(cluster_idx) == 0)[0]
                 if empty_clusters.size > 0:
-                    msg = ' '.join(["WARNING: SCUBA: refine_tree: empty cluster",
+                    msg = ' '.join(["WARNING: PySCUBA: refine_tree: empty cluster",
                         "identified at (pseudo-)time level {0}.\n".format(stage_idx + 1)])
                     warnings.warn(msg)
                     
@@ -342,7 +342,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
                 if min(tmp) > 0 and max(tmp) < 3:
                     parent_clusters[stage_idx] = list(reshuffled_parent_clusters + beg_previous)
                 else:
-                    msg = ' '.join(["WARNING: SCUBA: refine_tree: Binary tree",
+                    msg = ' '.join(["WARNING: PySCUBA: refine_tree: Binary tree",
                         "assumption violated at stage {0}.".format(stage_idx), 
                         "Using the unaltered configuration instead.\n"])
                     warnings.warn(msg)
@@ -356,7 +356,8 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
             delta_parents += np.sum(np.fabs(np.subtract(v1, v2)))
         
         if iter > 20 and delta_centroids < convergence_threshold and delta_indices == 0 and delta_parents == 0:
-            print("INFO: SCUBA: refine_tree: iterations successfully converged to an end.\n")
+            print("INFO: PySCUBA: refine_tree: iterations successfully converged "
+                  "to an end.\n")
             break
 
         iter += 1
