@@ -44,7 +44,7 @@ setup(name = 'PySCUBA',
       install_requires = ['matplotlib>=1.4.3', 'numpy>=1.9.0', 'Pillow>=3.2.0',
                           'PyQt4>=4.11.4', 'python-igraph', 'rpy2>=2.8.1',
                           'scipy>=0.17.0', 'setuptools', 'sklearn', 
-                          'wand>=0.4.3'],
+                          'Wand>=0.4.3'],
                           
       classifiers = ['Development Status :: 4 - Beta',
                      'Environment :: Console',
