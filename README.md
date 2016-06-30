@@ -1,6 +1,10 @@
 # PySCUBA
 
-PySCUBA stands for "Python for Single-cell Clustering Using Bifurcation Analysis." PySCUBA is a novel computational method for extracting lineage relationships from single-cell genomics data, and modeling the dynamic changes associated with cell differentiation. PySCUBA draws techniques from nonlinear dynamics and stochastic differential equation theories, providing a systematic framework for modeling complex processes involving multi-lineage specifications. 
+PySCUBA stands for "Python for Single-cell Clustering Using Bifurcation Analysis." 
+
+PySCUBA is a novel computational method for extracting lineage relationships from single-cell genomics data, and modeling the dynamic changes associated with cell differentiation. PySCUBA draws techniques from nonlinear dynamics and stochastic differential equation theories, providing a systematic framework for modeling complex processes involving multi-lineage specifications.
+
+There is a MATLAB implementation of this method. However, PySCUBA is a complete overhaul and redesign, where some bugs, mathematical inconsistencies and improper handling of outlier cases have been taken care of. PySCUBA is open source and can be used without the high licensing fees that were hampering some of our colleagues. Furthermore, PySCUBA is a much faster and more efficient way of handling the computations and data processing underlying the corresponding computational biology method. On a benchmark comparison, it was found that where the MATLAB code took about 20 minutes to complete, PySCUBA handles the same task in about 30 seconds.
 
 Installation
 ------------
@@ -27,19 +31,23 @@ Alternatively, you can also get PySCUBA from source by downloading a tarball or 
 
 ```$ python setup.py install```
 
-Here be dragons!
-----------------
+Usage
+-----
 
-This is still work in progress.
+In your terminal, run
 
-I have been tasked with redesigning into a Python package the Matlab code supporting the analysis presented in the following paper:
-Marco E, Karp RL, Guo G, Robson P, Hart AH, Trippa L, Yuan GC. (2014) "Bifurcation analysis of single-cell gene expression data reveals epigenetic landscape". Proceedings of the National Acacdemy of Sciences, 111, E5643-E5650.
+```$ PySCUBA```
 
-The motivation for this project is twofold:
-- to make do without high Matlab licensing fees that were preventing some of our colleagues from using SCUBA and other tools developed at our lab;
-- to come up with faster, more efficient way of handling the computations and data processing; a benchmark comparison done on the same machine and on a few datasets found that where SCUBA took about 20 minutes to complete, PySCUBA handles the same task in about 30 seconds.
+upon which a graphical user interface should pop up. 
 
-I have found a few bugs, mathematical inconsistencies and improper or overlooked handling of outlier cases in the Matlab code. Such issues are fully addressed in the present Python package.
+Select the file to process, choose the relevant data type and other such parameters. Detailed explanations for each of those options can be obtained by maintaining your cursor on a particular button; this includes format specifications for your dataset. 
+
+After your dataset has been subjected to various iterations of gap-statistics and penalized maximum likelihood estimations of the parameters of a Fokker-Planck potential, you will be prompted to choose various output files to display within the PySCUBA GUI.
+
+Example
+-------
+
+
 
 Attribution
 -----------
@@ -58,7 +66,7 @@ The respective BibTex entry is
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/GGiecold/PySCUBA}},
-  commit = {}
+  commit = {401fbde96295cc90a3a02feda55aee8aeb79f743}
 }
 ```
 
@@ -72,6 +80,4 @@ Licence
 Copyright 2016-2021 Gregory Giecold.
 
 PySCUBA is free software made available under the MIT License. For details see the LICENSE file.
-
-
 
