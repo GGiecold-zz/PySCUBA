@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-# PySCUBA/__version__.py
+# PySCUBA/src/PySCUBA/__version__.py
 
 
 # Author: Gregory Giecold for the GC Yuan Lab
