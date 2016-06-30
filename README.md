@@ -81,7 +81,7 @@ We are now going to write this dataframe to a tab-separated *.txt file in your c
 df.to_csv(path.join(getcwd(), 'super_duper_data.txt'), sep='\t', index=False)
 ```
 
-In your terminal, while ensuring that you are still within the directory where ```super_duper_data.txt``` was written, we are now ready to launch the PySCUBA graphical user interface: 
+In your terminal, we are now ready to launch the PySCUBA graphical user interface, which can be launched from any directory (not necessarily the one holding ```super_duper_data.txt```): 
 
 ```
 $ PySCUBA
