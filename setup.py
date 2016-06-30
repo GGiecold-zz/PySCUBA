@@ -12,7 +12,7 @@
 from codecs import open
 from os import path
 
-from setuptools import setup, find_packages()
+from setuptools import setup
 
 
 exec(open('PySCUBA/__version__.py').read())
