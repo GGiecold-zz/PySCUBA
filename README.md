@@ -44,7 +44,7 @@ I have found a few bugs, mathematical inconsistencies and improper or overlooked
 Attribution
 -----------
 
-If you find PySCUBA useful in your research, please cite its GitHub repository:
+If you find PySCUBA useful in your research, please cite its GitHub repository:\n
 Giecold G, PySCUBA, (2016), GitHub repository, https://github.com/GGiecold/PySCUBA
 
 The respective BibTex entry is
