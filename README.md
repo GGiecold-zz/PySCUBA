@@ -1,11 +1,13 @@
 # PySCUBA
 
-PySCUBA stands for "Python for Single-cell Clustering Using Bifurcation Analysis." 
+PySCUBA stands for "Python for Single-cell Clustering Using Bifurcation Analysis". 
 
 PySCUBA is a novel computational method for extracting lineage relationships from single-cell genomics data, and modeling the dynamic changes associated with cell differentiation. 
 PySCUBA draws from techniques in nonlinear dynamics and knowledge of stochastic differential equations to provide a systematic framework for modeling complex processes involving multi-lineage specifications.
 
-There is a MATLAB implementation of this method. However, PySCUBA is a complete overhaul and redesign, where some bugs, mathematical inconsistencies and improper handling of outlier cases have been taken care of.
+There is a MATLAB implementation of this method. However, PySCUBA is a complete overhaul and redesign, where some bugs, mathematical inconsistencies and improper handling of outlier cases have been taken care of. PySCUBA also comes with a GUI, written using the Python wrapper for the Qt framework:
+
+
 
 PySCUBA is open source and can be used without the high licensing fees that were hampering some of our colleagues.
 Furthermore, PySCUBA is a much faster and more efficient way of handling the computations and data processing underlying the corresponding computational biology method. On a benchmark comparison, it was found that where the MATLAB code took about 20 minutes to complete, PySCUBA handles the same task in about 30 seconds.
@@ -85,7 +87,7 @@ In your terminal, while ensuring that you are still within the directory where `
 $ PySCUBA
 ```
 
-Below are a few screenshots illustrating how to select ```super_duper_data.txt``` for processing, how to launch the computations and finally how to select files for display and further investigations:
+Below are a few screenshots illustrating how the PySCUBA GUI looks at start time, how to select ```super_duper_data.txt``` for processing and, once the dust settles down, how to select files for display and further investigations:
 
 Attribution
 -----------
