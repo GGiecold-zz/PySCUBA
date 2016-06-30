@@ -29,9 +29,9 @@ Most of those dependencies should be automatically resolved during an installati
 * starting a terminal;
 * running ```$ pip install PySCUBA```.
 
-Nonetheless, please ensure those prerequisites have been met before proceeding further. In particular, PyQt might have to be installed manually. In addition, note that you might need to run this using ```sudo``` depending on your Python installation.
+Nonetheless, please ensure all those prerequisites have been met before proceeding any further. In particular, ```PyQt``` might have to be installed manually. In addition, note that you might need to run this using ```sudo``` depending on your Python installation.
 
-Alternatively, you can also get PySCUBA from source by downloading a tarball or zip archive from the corresponding GitHub page. Once you have downloaded and unpacked the source, you can navigate into the root source directory and run:
+Alternatively, you can also get PySCUBA from source by downloading a tarball or zip archive from the corresponding GitHub page. Once you have downloaded and unpacked the source, navigate into the root source directory and run:
 
 ```$ python setup.py install```
 
@@ -51,7 +51,41 @@ After your data has been subjected to various iterations of gap-statistics and p
 Example
 -------
 
+A fully-functional, annotated example demonstrating a standard usage PySCUBA is provided herewith.
 
+First of all, in a Python session, let us import a few modules. ```Pandas``` will prove quite convenient to fetch our example dataset:
+
+```
+from os import getcwd, path
+import pandas as pd
+```
+
+The dataset in question is some qPCR data from Deng et al., "Single-cell RNA-seq reveals dynamic, random monoallelic gene expression in mammalian cells." Science. 2014 Jan 10;343(6167):193-6. It is accessible from a particular GitHub repository, whose url appears below. We want the content of that file, not its full GitHub view, which is why we use the ```Raw``` link to that repository and explains the lack of any ```blob/``` in its url path:
+
+```
+url = 'https://raw.githubusercontent.com/gcyuan/SCUBA/master/sample_data/guo2010/guo2010Data.txt'
+df = pd.read_csv(url, delimiter='\t')
+```
+
+Check that nothing untoward occurred by typing in
+
+```
+df.head()
+```
+
+We are now going to write this dataframe to a tab-separated *.txt file in your current working directory:
+
+```
+df.to_csv(path.join(getcwd(), 'super_duper_data.txt'), sep='\t', index=False)
+```
+
+In your terminal, while ensuring that you are still within the directory where ```super_duper_data.txt``` was written, we are now ready to launch the PySCUBA graphical user interface: 
+
+```
+$ PySCUBA
+```
+
+Below are a few screenshots illustrating how to select ```super_duper_data.txt``` for processing, how to launch the computations and finally how to select files for display and further investigations:
 
 Attribution
 -----------
