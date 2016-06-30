@@ -44,9 +44,9 @@ In your terminal, run
 
 upon which a graphical user interface should pop up. 
 
-Select the file to process, choose the relevant data type and other such parameters. Detailed explanations for each of those options can be obtained by maintaining your cursor on a particular button; this includes format specifications for your dataset. 
+Select the file to process and choose the relevant data type and other such parameters. Detailed explanations for each of those options can be obtained by maintaining your cursor on a particular button; this includes format specifications for your dataset. 
 
-After your dataset has been subjected to various iterations of gap-statistics and penalized maximum likelihood estimations of the parameters of a Fokker-Planck potential, you will be prompted to choose various output files to display within the PySCUBA GUI.
+After your data has been subjected to various iterations of gap-statistics and penalized maximum likelihood estimations of the parameters of a Fokker-Planck potential, you will be prompted to choose various output files to display within the PySCUBA GUI. You can scroll up and down the display window, as well as zoom in and out.
 
 Example
 -------
