@@ -44,7 +44,25 @@ I have found a few bugs, mathematical inconsistencies and improper or overlooked
 Attribution
 -----------
 
-Please cite the following article if you find PySCUBA useful in your research:
+If you find PySCUBA useful in your research, please cite its GitHub repository:
+
+Giecold G, PySCUBA, (2016), GitHub repository, https://github.com/GGiecold/PySCUBA
+
+The respective BibTex entry is
+```
+@misc{Giecold2016,
+  author = {Giecold, G.},
+  title = {PySCUBA},
+  year = {2016},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/GGiecold/PySCUBA}},
+  commit = {}
+}
+```
+
+Besides, please cite the following reference as well:
+
 Marco E, Karp RL, Guo G, Robson P, Hart AH, Trippa L, Yuan GC. (2014) "Bifurcation analysis of single-cell gene expression data reveals epigenetic landscape". Proceedings of the National Acacdemy of Sciences, 111, E5643-E5650.
 
 Licence
