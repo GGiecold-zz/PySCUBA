@@ -7,7 +7,7 @@ PySCUBA draws from techniques in nonlinear dynamics and knowledge of stochastic 
 
 There is a MATLAB implementation of this method. However, PySCUBA is a complete overhaul and redesign, where some bugs, mathematical inconsistencies and improper handling of outlier cases have been taken care of. PySCUBA also comes with a GUI, written using the Python wrapper for the Qt framework:
 
-
+![alt tag](https://raw.githubusercontent.com/GGiecold/PySCUBA/master/img/PySCUBA_screenshot_starting.png)
 
 PySCUBA is open source and can be used without the high licensing fees that were hampering some of our colleagues.
 Furthermore, PySCUBA is a much faster and more efficient way of handling the computations and data processing underlying the corresponding computational biology method. On a benchmark comparison, it was found that where the MATLAB code took about 20 minutes to complete, PySCUBA handles the same task in about 30 seconds.
