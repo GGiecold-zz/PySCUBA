@@ -15,7 +15,7 @@ from os import path
 from setuptools import setup
 
 
-exec(open('PySCUBA/__version__.py').read())
+exec(open(path.join('src', 'PySCUBA', '__version__.py')).read())
 
 
 here = path.abspath(path.dirname(__file__))
