@@ -110,7 +110,7 @@ The respective BibTex entry is
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/GGiecold/PySCUBA}},
-  commit = {16bfdc6c65ffda95195155900ed99ccf81c167d5}
+  commit = {8ee6a08de15decdcdaf7d877888ae783832d80f2}
 }
 ```
 
