@@ -88,6 +88,10 @@ $ PySCUBA
 ```
 
 Below are a few screenshots illustrating how the PySCUBA GUI looks at start time, how to select ```super_duper_data.txt``` for processing and, once the dust settles down, how to select files for display and further investigations:
+* Selecting a dataset: ![alt tag](https://raw.githubusercontent.com/GGiecold/PySCUBA/master/img/PySCUBA_screenshot_select_data.png)
+* Message box arising upon completion of the various computations and MLE: ![alt tag](https://raw.githubusercontent.com/GGiecold/PySCUBA/master/img/PySCUBA_screenshot_mission_accomplished.png)
+* Selecting a file to display within a GUI widget: ![alt tag](https://raw.githubusercontent.com/GGiecold/PySCUBA/master/img/PySCUBA_screenshot_select_display.png)
+* Inspecting one of PySCUBA's output files (here, bifurcation diagrams and fitted potentials): ![alt tag](https://raw.githubusercontent.com/GGiecold/PySCUBA/master/img/PySCUBA_screenshot_display.png)
 
 Attribution
 -----------
