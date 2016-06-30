@@ -41,10 +41,9 @@ setup(name = 'PySCUBA',
       license = 'MIT License',
       
       platforms = ('Any',),
-      install_requires = ['matplotlib>=1.4.3', 'numpy>=1.9.0', 'Pillow>=3.2.0',
-                          'PyQt4>=4.11.4', 'python-igraph', 'rpy2>=2.8.1',
-                          'scipy>=0.17.0', 'setuptools', 'sklearn', 
-                          'Wand>=0.4.3'],
+      install_requires = ['matplotlib>=1.4.3', 'numpy>=1.9.0', 'Pillow>=3.2.0', 
+                          'python-igraph', 'rpy2>=2.8.1', 'scipy>=0.17.0', 
+                          'setuptools', 'sklearn', 'Wand>=0.4.3'],
                           
       classifiers = ['Development Status :: 4 - Beta',
                      'Environment :: Console',
