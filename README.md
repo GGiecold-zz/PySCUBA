@@ -114,7 +114,7 @@ Besides, please cite the following reference as well:
 
 Marco E, Karp RL, Guo G, Robson P, Hart AH, Trippa L, Yuan GC. (2014) "Bifurcation analysis of single-cell gene expression data reveals epigenetic landscape". Proceedings of the National Acacdemy of Sciences, 111, E5643-E5650.
 
-Licence
+License
 -------
 
 Copyright 2016-2021 Gregory Giecold.
