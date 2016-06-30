@@ -16,11 +16,13 @@ PySCUBA is written in Python 2.7. It relies on the following libraries and APIs:
 * ```setuptools``` (version>=21.0.0)
 * ```sklearn``` (version>=0.17.1)
 * ```Wand``` (version 0.4.3 or subsequent)
+
 Most of those dependencies should be automatically resolved during an installation with 'pip', by
 * starting a terminal;
-* run ```$ pip install PySCUBA```.
-Nonetheless, please ensure those prerequisites have been met before proceeding further. In particular, PyQt might have to be installed manually.
-In addition, note that you might need to run this using ```sudo``` depending on your Python installation.
+* running ```$ pip install PySCUBA```.
+
+Nonetheless, please ensure those prerequisites have been met before proceeding further. In particular, PyQt might have to be installed manually. In addition, note that you might need to run this using ```sudo``` depending on your Python installation.
+
 Alternatively, you can also get PySCUBA from source by downloading a tarball or zip archive from the corresponding GitHub page. Once you have downloaded and unpacked the source, you can navigate into the root source directory and run:
 ```$ python setup.py install```
 
