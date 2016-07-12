@@ -33,6 +33,8 @@ Most of those dependencies should be automatically resolved during an installati
 
 Nonetheless, please ensure all those prerequisites have been met before proceeding any further. In particular, ```PyQt``` might have to be installed manually. In addition, note that you might need to run this using ```sudo``` depending on your Python installation.
 
+In addition, you should have an up-to-date version of R in your environment, along with the ```princurve``` R package for principal curve analysis.
+
 Alternatively, you can also get PySCUBA from source by downloading a tarball or zip archive from the corresponding GitHub page. Once you have downloaded and unpacked the source, navigate into the root source directory and run:
 
 ```$ python setup.py install```
