@@ -33,13 +33,12 @@ __all__ = ['Annotation', 'cytometry_preprocess', 'Cyto_data',
 
 
 def infer_pseudotime(data, output_directory, tag = '', pcv_method = 'Rprincurve',
-                     anchor_gene = None, markers = None):
+                     anchor_gene = None, markers = None, N_dim=3):
 
     assert pcv_method in {'Rprincurve'} # taking into account the possibility of adding
                                         # in future versions other methods 
                                         # for principal curve analysis
     
-    N_dim = 3
     model = TSNE(n_components = N_dim)
     TSNE_data = model.fit_transform(data)
     
