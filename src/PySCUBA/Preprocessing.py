@@ -777,7 +777,7 @@ def PCR_preprocess(file_path, log_mode = False, pseudotime_mode = False,
                 
 def RNASeq_preprocess(file_path, log_mode = True, pseudotime_mode = False, 
                        pcv_method = 'Rprincurve', anchor_gene = None,
-                       exclude_marker_names = None, N_dim=3, low_gene_threshold=1, low_gene_fraction=0.7, N_selected_genes=1000):
+                       exclude_marker_names = None, N_dim=3, low_gene_threshold=1, low_gene_fraction_max=0.7, N_selected_genes=1000):
 
     assert isinstance(log_mode, bool)
     assert isinstance(pseudotime_mode, bool)
