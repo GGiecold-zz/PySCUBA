@@ -26,8 +26,6 @@ from sklearn.manifold import TSNE
 
 from . import Tree_classes
 
-from tsne import bh_sne
-
 
 __all__ = ['Annotation', 'cytometry_preprocess', 'Cyto_data', 
            'FCS_handler', 'get_FCS_data', 'infer_pseudotime', 
@@ -41,7 +39,7 @@ def infer_pseudotime(data, output_directory, tag = '', pcv_method = 'Rprincurve'
                                         # in future versions other methods 
                                         # for principal curve analysis
     
-    model = TSNE(n_components = N_dim, metric='correlation', learning_rate=100, n_iter=1000000)
+    model = TSNE(n_components = N_dim, learning_rate=100, n_iter=1000000)
     TSNE_data = model.fit_transform(data)
 
    # model = TSNE(n_components = N_dim)
