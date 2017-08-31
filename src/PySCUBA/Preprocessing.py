@@ -41,7 +41,8 @@ def infer_pseudotime(data, output_directory, tag = '', pcv_method = 'Rprincurve'
                                         # in future versions other methods 
                                         # for principal curve analysis
     
-    TSNE_data = bh_sne(data.T, d=N_dim, pca_d=50, perplexity=30, theta=0)
+    model = TSNE(n_components = N_dim, metric='correlation', learning_rate=100, n_iter=1000000)
+    TSNE_data = model.fit_transform(data)
 
    # model = TSNE(n_components = N_dim)
    # TSNE_data = model.fit_transform(data)
