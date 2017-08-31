@@ -90,17 +90,12 @@ def custom_formatwarning(msg, *a):
     return str(msg) + '\n'
     
     
-def initialize_tree(data, cell_stages, rigorous_gap_stats = False):
+def initialize_tree(data, cell_stages, rigorous_gap_stats = False, min_split=15, min_percentage_split=0.25):
     """Come up with an initial assessment of the cellular hierarchy, using a series of
        k-means clustering.
     """
 
     warnings.formatwarning = custom_formatwarning
-
-    min_split = 15                 # Lower threshold on the number of cells in a cluster 
-                                   # for this cluster to be split.
-    min_percentage_split = 0.25     # Minimum fraction of cells in the smaller cluster
-                                   # during a bifurcation.
     
     N_cells, N_features = data.shape
     
@@ -391,7 +386,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
     with open(path.join(output_directory, 'cluster_IDs.csv'), 'w') as f:
         np.savetxt(f, cluster_indices, fmt = '%d', delimiter = ',')
 
-    return centroid_coordinates, cluster_indices, parent_clusters
+    return centroid_coordinates, cluster_indices, parent_clusters, final_tree
 
 
 def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coordinates,
