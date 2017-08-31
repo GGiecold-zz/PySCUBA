@@ -777,17 +777,10 @@ def PCR_preprocess(file_path, log_mode = False, pseudotime_mode = False,
                 
 def RNASeq_preprocess(file_path, log_mode = True, pseudotime_mode = False, 
                        pcv_method = 'Rprincurve', anchor_gene = None,
-                       exclude_marker_names = None):
+                       exclude_marker_names = None, N_dim=3, low_gene_threshold=1, low_gene_fraction=0.7, N_selected_genes=1000):
 
     assert isinstance(log_mode, bool)
     assert isinstance(pseudotime_mode, bool)
-    
-    # Threshold value for genes of low expression levels
-    low_gene_threshold = 1
-    # Maximum fraction of lowly-expressed cells allowed for each gene
-    low_gene_fraction_max = 0.7
-    # Number of highly variable genes selected
-    N_selected_genes = 1000
     
     data_tag, output_directory = create_output_directory(file_path)
     
@@ -808,7 +801,7 @@ def RNASeq_preprocess(file_path, log_mode = True, pseudotime_mode = False,
         
     if pseudotime_mode:
         cell_stages = infer_pseudotime(data, output_directory, data_tag, pcv_method,
-                                       anchor_gene, markers)
+                                       anchor_gene, markers, N_dim)
         
     condition = np.mean(data < low_gene_threshold, axis = 0) < low_gene_fraction_max
     data = np.compress(condition, data, 1)
