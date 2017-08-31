@@ -11,14 +11,13 @@
 
 from .Gap_stats import *
 from .Preprocessing import *
-from .PySCUBA_design import *
 from .SCUBA_core import *
 from .Tree_classes import *
 
 from .__version__ import __version__
 
 
-__all__ = ['Gap_stats', 'Preprocessing', 'PySCUBA_design', 'SCUBA_core', 
+__all__ = ['Gap_stats', 'Preprocessing', 'SCUBA_core', 
            'Tree_classes']
 
 
