@@ -123,7 +123,7 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False, min_split=15,
         log_W, E_log_W, s_k = gap_stats(X, 1, k_max)
         if log_W is not None:
             gaps = E_log_W - log_W
-            for l in range(gaps.size - 1):
+            for l in xrange(gaps.size - 1):
                 if gaps[l] >= gaps[l + 1] - s_k[l + 1]:
                     N_best_clusters = l + 1
                     break
@@ -136,12 +136,12 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False, min_split=15,
         R = np.dot(R, W) / sqrt(1 / float(12))
    
         W_k0 = np.empty(k_max, dtype = float)
-        for i in range(k_max):
+        for i in xrange(k_max):
             kmeans = KMeans(i + 1, n_init = 50)
             W_k0[i] = kmeans.fit(R).inertia_ / float(N_samples)
     
         W_k = np.empty(k_max, dtype = float)
-        for i in range(k_max):
+        for i in xrange(k_max):
             kmeans = KMeans(i + 1, n_init = 50)
             W_k[i] = kmeans.fit(X).inertia_ / float(X.shape[0])
         
@@ -159,9 +159,9 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False, min_split=15,
     cluster_indices[condition] = kmeans.labels_
     centroid_coordinates = kmeans.cluster_centers_
     parent_clusters[0].extend([-1] * N_best_clusters)
-    cluster_IDs_per_stage[0].extend([k for k in range(N_best_clusters)])
+    cluster_IDs_per_stage[0].extend([k for k in xrange(N_best_clusters)])
     
-    for stage_idx in range(1, N_stages):
+    for stage_idx in xrange(1, N_stages):
         condition = cell_stages == stages[stage_idx]
     
         X = np.compress(condition, data, axis = 0)
@@ -175,7 +175,7 @@ def initialize_tree(data, cell_stages, rigorous_gap_stats = False, min_split=15,
                                           previous_centroid_coordinates)
         
         # The following will now test for a bifurcation at this (pseudo-)time stage:
-        for j in range(N_previous_clusters):
+        for j in xrange(N_previous_clusters):
             idx = np.where(nearest_previous_cluster_indices == j)[0]
             
             if idx.size == 0:
@@ -253,7 +253,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
     
     N_clusters = centroid_coordinates.shape[0]
     
-    N_clusters_per_stage = np.array([len(v) for v in list(parent_clusters.values())], dtype = int)
+    N_clusters_per_stage = np.array([len(v) for v in parent_clusters.values()], dtype = int)
     cumulative_N_clusters = np.append([0], np.cumsum(N_clusters_per_stage))
     
     # Assume that the variances of each features are identical and the same across 
@@ -272,10 +272,10 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
         outdated_centroid_coordinates = np.copy(centroid_coordinates)
         
         outdated_parent_clusters = defaultdict(list)
-        for k, v in list(parent_clusters.items()):
+        for k, v in parent_clusters.items():
             outdated_parent_clusters[k] = v
         
-        for stage_idx in range(N_stages):
+        for stage_idx in xrange(N_stages):
             beg = cumulative_N_clusters[stage_idx]
             end = cumulative_N_clusters[stage_idx + 1]
             
@@ -286,7 +286,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
             
             if end - beg > 1:
                 dispersion = np.empty((end - beg, cells_at_stage.size), dtype = float)
-                for i in range(end - beg):
+                for i in xrange(end - beg):
                     tmp = data[cells_at_stage] - centroid_coordinates[beg:end][i]
                     tmp = np.divide(tmp, Sigma_at_stage[i].astype(float))
                     tmp = tmp ** 2
@@ -347,7 +347,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
         delta_indices = np.sum(np.fabs(cluster_indices - outdated_cluster_indices))
         
         delta_parents = 0
-        for v1, v2 in zip(list(outdated_parent_clusters.values()), list(parent_clusters.values())):
+        for v1, v2 in zip(outdated_parent_clusters.values(), parent_clusters.values()):
             delta_parents += np.sum(np.fabs(np.subtract(v1, v2)))
         
         if iter > 20 and delta_centroids < convergence_threshold and delta_indices == 0 and delta_parents == 0:
@@ -363,7 +363,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
         
     stages = np.empty(0, dtype = int)
     parents = np.empty(0, dtype = int)
-    for k, v in list(parent_clusters.items()):
+    for k, v in parent_clusters.items():
         stages = np.concatenate((stages, [k] * len(v)))
         parents = np.append(parents, np.add(1, v))
         
@@ -372,7 +372,7 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
         
     with open(final_tree_path, 'w') as f:
         f.write('\t'.join(['Cluster ID', 'Stage', 'Parent cluster\t']))
-        f.write('\t'.join(['MU {0}'.format(k + 1) for k in range(N_features)]))
+        f.write('\t'.join(['MU {0}'.format(k + 1) for k in xrange(N_features)]))
         f.write('\n')
         
     final_tree = np.genfromtxt(final_tree_path, delimiter = '\t', dtype = str)
@@ -400,14 +400,14 @@ def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coo
     if output_directory is None:
         output_directory = getcwd()
         
-    N_clusters_per_stage = np.array([len(v) for v in list(parent_clusters.values())], dtype = int)
+    N_clusters_per_stage = np.array([len(v) for v in parent_clusters.values()], dtype = int)
     cumulative_N_clusters = np.append([0], np.cumsum(N_clusters_per_stage))
     
     bifurcation_info = defaultdict(list)
     bifurcation_directions = np.empty((markers.size, 0), dtype = float)
     bifurcation_projections = np.empty((cell_IDs.size, 0), dtype = float)
     
-    for stage_idx, parents in list(parent_clusters.items()):
+    for stage_idx, parents in parent_clusters.items():
         if stage_idx > 0:
             tmp1 = np.bincount(parents)
             splitting_parents = np.where(tmp1 > 1)[0]
@@ -432,7 +432,7 @@ def bifurcation_direction(data, cell_IDs, markers, parent_clusters, centroid_coo
                                                         np.dot(weights.T, tmp2)))
                     
     header = ['Stage']
-    for k, v in list(bifurcation_info.items()):
+    for k, v in bifurcation_info.items():
         header.extend([str(k)] * len(v))
     
     if len(header) == 1:
@@ -497,7 +497,7 @@ def bifurcation_analysis(cluster_indices, bifurcation_info, bifurcation_directio
     data_per_split = dict()
     parameters_per_split = dict()
     counter = 0
-    for stage, vectors in sorted(list(bifurcation_info.items()), key = lambda tpl: tpl[0]):
+    for stage, vectors in sorted(bifurcation_info.items(), key = lambda tpl: tpl[0]):
         for v in vectors:
             projected_data = bifurcation_projections[:, counter]
         
@@ -631,7 +631,7 @@ def potential(x, parameters):
 def get_ordinals(N):
 
     ordinals = ['1st', '2nd', '3rd']
-    ordinals.extend(['{0}th'.format(i) for i in range(4, N + 1)])
+    ordinals.extend(['{0}th'.format(i) for i in xrange(4, N + 1)])
     
     return ordinals
     
