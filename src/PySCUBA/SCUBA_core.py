@@ -379,12 +379,6 @@ def refine_tree(data, centroid_coordinates, cluster_indices, parent_clusters, ce
     bundle = np.hstack((np.arange(1, N_clusters + 1).reshape(N_clusters, 1), stages, 
                        parents, centroid_coordinates))
     final_tree = np.vstack((final_tree, bundle))
-    
-    with open(final_tree_path, 'w') as f:
-        np.savetxt(f, final_tree, fmt = '%s', delimiter = '\t')
-        
-    with open(path.join(output_directory, 'cluster_IDs.csv'), 'w') as f:
-        np.savetxt(f, cluster_indices, fmt = '%d', delimiter = ',')
 
     return centroid_coordinates, cluster_indices, parent_clusters, final_tree
 

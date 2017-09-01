@@ -51,7 +51,6 @@ def infer_pseudotime(data, output_directory, tag = '', pcv_method = 'Rprincurve'
                   'w') as f:
             f.write('\t'.join(['T{0}'.format(k) for k in range(1, N_dim + 1)]))
             f.write('\n')
-            np.savetxt(f, TSNE_data, fmt = '%.6f', delimiter = '\t')
         
         numpy2ri.activate()
         princurve = importr('princurve')
@@ -860,13 +859,7 @@ def get_PCR_or_RNASeq_data(file_path, pseudotime_mode = False):
     
     
 def write_preprocessed_data(output_directory, cell_IDs, cell_stages, data, markers):
-
-    processed_data_path = path.join(output_directory, 'processed_data.tsv')
-        
-    dataset = np.genfromtxt(processed_data_path, delimiter = '\t', dtype = str)
-    dataset = np.insert(dataset, 0, np.append(['Cell ID', 'Stage'], 
-        markers), axis = 1)
-        
+    ""
         
 
     
