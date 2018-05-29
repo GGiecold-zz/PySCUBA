@@ -169,7 +169,7 @@ class Tree(object):
         if node == None:
             node = self.current
             
-        return [i for i in list(self.nodes.values()) if i.parent == node]
+        return [i for i in self.nodes.values() if i.parent == node]
 
     def visit(self, name):
         """Visit a node in the tree."""
@@ -213,7 +213,7 @@ class Tree(object):
             else:
                 name = prefix + '1'
                 
-        if name in list(self.nodes.keys()):
+        if name in self.nodes.keys():
             raise KeyError("Name {0} already in use in tree".format(name))
         else:
             node.name = name
@@ -226,9 +226,9 @@ class Tree(object):
            D(old,new) -> rename old to new.
         """
         
-        if old_name not in self.nodes:
+        if not self.nodes.has_key(old_name):
             raise KeyError("No node named {0}.".format(old_name))
-        if new_name in self.nodes:
+        if self.nodes.has_key(new_name):
             raise KeyError("There is already a node named {0}".format(new_name))
         else:
             self.nodes[new_name] = self.nodes[old_name]

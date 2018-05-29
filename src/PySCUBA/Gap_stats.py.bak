@@ -38,7 +38,7 @@ def box_corners(data):
     mins = np.amin(data, axis = 0)
     maxs = np.amax(data, axis = 0)
 
-    return list(zip(mins, maxs))
+    return zip(mins, maxs)
 
 
 def one_to_max(array_in):
@@ -67,7 +67,7 @@ def one_to_max(array_in):
 
     last = np.nan
     current_index = -1
-    for i in range(N_in):
+    for i in xrange(N_in):
         if last != sorted_array[i] or np.isnan(last):
             last = sorted_array[i]
             current_index += 1
@@ -88,7 +88,7 @@ def W_k(data, centroids, cluster_IDs):
     assert len(centroids) == N_clusters
 
     W_k = 0
-    for i in range(N_clusters):
+    for i in xrange(N_clusters):
         samples_in_i = np.where(cluster_IDs == i)[0]
         if samples_in_i.size > 0:
             W_k += np.sum(np.linalg.norm(data[j] - centroids[i]) ** 2 for j in samples_in_i)
@@ -121,9 +121,9 @@ def gap_stats(data, min_k = 1, max_k = 10):
         log_W_list.append(np.log(W_k(data, centroids, cluster_IDs))) 
 
         log_W_k_b_list = np.zeros(B, dtype = float)
-        for b in range(B):
+        for b in xrange(B):
             uniform_data = np.zeros((data.shape[0], data.shape[1]), dtype = float)
-            for i in range(data.shape[1]):
+            for i in xrange(data.shape[1]):
                 v = np.random.uniform(low = min_maxs[i][0], high = min_maxs[i][1], size = data.shape[0])
                 uniform_data[:, i] = v
 

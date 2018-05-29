@@ -20,7 +20,7 @@ exec(open(path.join('src', 'PySCUBA', '__version__.py')).read())
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README'), encoding = 'utf-8') as f:
+with open(path.join(here, 'README.md'), encoding = 'utf-8') as f:
     long_description = f.read()
     
 
@@ -42,7 +42,7 @@ setup(name = 'PySCUBA',
       
       platforms = ('Any',),
       install_requires = ['matplotlib>=1.4.3', 'numpy>=1.9.0', 'Pillow>=3.2.0', 
-                          'python-igraph', 'rpy2>=2.8.1', 'scipy>=0.17.0', 
+                          'python-igraph', 'rpy2', 'scipy>=0.17.0', 
                           'setuptools', 'sklearn', 'Wand>=0.4.3'],
                           
       classifiers = ['Development Status :: 4 - Beta',
